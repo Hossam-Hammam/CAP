@@ -19,7 +19,7 @@
     "eslint": "^9.39.2"
   },
   "scripts": {
-    "prestart": "npm install",
+    "prestart": "npm install && cds deploy",
     "start": "cds watch",
     "serve": "cds-serve"
   },
