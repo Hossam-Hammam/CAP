@@ -1,0 +1,17 @@
+{
+    "comment": "Customer special request - expedited shipping",
+    "Items": [
+        {
+            "pos": 1,
+            "quantity": 2
+        },
+        {
+            "pos": 2,
+            "quantity": 1
+        },
+        {
+            "pos": 3,
+            "quantity": 5
+        }
+    ]
+}
