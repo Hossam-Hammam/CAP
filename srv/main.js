@@ -1,28 +1,19 @@
-// const cds = require('@sap/cds');
-
-const { get } = require("@sap/cds");
-const { SELECT, UPDATE } = require("@sap/cds/lib/ql/cds-ql");
-// const Books = cds.entities('org.hossam')['Books'];
-// const Authors = cds.entities('org.hossam')['Authors'];
-// module.exports = cds.service.impl(async function () {
-//     this.on('READ', 'Books', async (_, next) => next() );
-// });
-// const logger = cds.log('bookshop')
+const cds = require('@sap/cds');
 class BooksService extends cds.ApplicationService {
     init() {
-        const { Books, Authors } = this.entities
-        this.after('READ', Authors, (data, req) => {
-            data.map(author => author.name)
-            //data.forEach((x,i) => {
-              //  data[i].name = x + 'XXx';
-           // });
+        const { PO } = this.entities
+
+        // Approvals may come in as the SAP-style flag 'X'; store them as 'TRUE' like the seed data.
+        this.before(['CREATE', 'UPDATE'], PO, req => {
+            for (const po of [req.data].flat()) {
+                for (const field of ['L1Approve', 'L2Approve']) {
+                    if (String(po[field]).trim().toUpperCase() === 'X') po[field] = 'TRUE'
+                }
+            }
         })
-        const getBookCount = async (req) => {
-            let data = await SELECT.from('Books').where({ Stock: { '>=': 10 } }).columns('sum(Stock) as total' , 'title');
-            return data;
-        }
-        this.on('getBookCount', getBookCount )
-        
+
+        this.on('userInfo', req => ({ id: req.user.id, authorized: req.user.is('POViewer') }))
+
         return super.init()
     }
 }

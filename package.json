@@ -19,7 +19,7 @@
     "eslint": "^9.39.2"
   },
   "scripts": {
-    "prestart": "npm install && cds deploy",
+    "prestart": "cds deploy",
     "start": "cds watch",
     "serve": "cds-serve"
   },
@@ -33,6 +33,15 @@
           },
           "[development]": {
             "url": "bookshop.sqlite"
+          }
+        }
+      },
+      "auth": {
+        "[development]": {
+          "users": {
+            "alice": { "password": "alice", "roles": ["POViewer"] },
+            "bob": { "password": "bob", "roles": [] },
+            "*": false
           }
         }
       }
