@@ -1,0 +1,43 @@
+{
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.POViewer",
+      "description": "POViewer"
+    },
+    {
+      "name": "$XSAPPNAME.L1Approver",
+      "description": "L1Approver"
+    },
+    {
+      "name": "$XSAPPNAME.L2Approver",
+      "description": "L2Approver"
+    }
+  ],
+  "attributes": [],
+  "role-templates": [
+    {
+      "name": "POViewer",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.POViewer"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "L1Approver",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.L1Approver"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "L2Approver",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.L2Approver"
+      ],
+      "attribute-references": []
+    }
+  ]
+}

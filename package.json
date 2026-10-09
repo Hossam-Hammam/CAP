@@ -8,8 +8,7 @@
     "@sap/cds-common-content": "^3.1.0",
     "cors": "^2.8.6",
     "express": "^4",
-    "ngrok": "^5.0.0-beta.2",
-    "sqlite3": "^5.1.7"
+    "@sap/xssec": "^4"
   },
   "devDependencies": {
     "@cap-js/cds-test": "^0.4.1",
@@ -28,9 +27,6 @@
       "db": {
         "kind": "sqlite",
         "credentials": {
-          "[testing]": {
-            "url": "bookshop.sqlite"
-          },
           "[development]": {
             "url": "bookshop.sqlite"
           }
@@ -39,10 +35,45 @@
       "auth": {
         "[development]": {
           "users": {
-            "alice": { "password": "alice", "roles": ["POViewer"] },
-            "bob": { "password": "bob", "roles": [] },
+            "alice": {
+              "password": "alice",
+              "roles": [
+                "POViewer"
+              ]
+            },
+            "carol": {
+              "password": "carol",
+              "roles": [
+                "POViewer",
+                "L1Approver"
+              ]
+            },
+            "dave": {
+              "password": "dave",
+              "roles": [
+                "POViewer",
+                "L2Approver"
+              ]
+            },
+            "erin": {
+              "password": "erin",
+              "roles": [
+                "POViewer",
+                "L1Approver",
+                "L2Approver"
+              ]
+            },
+            "bob": {
+              "password": "bob",
+              "roles": []
+            },
             "*": false
           }
+        }
+      },
+      "[production]": {
+        "auth": {
+          "kind": "xsuaa"
         }
       }
     }
